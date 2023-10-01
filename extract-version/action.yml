@@ -10,10 +10,6 @@ inputs:
     description: 'The regex expression to capture the semantic version'
     required: true
     default: '[0-9.\-A-z]*'
-  git-ref:
-    description: 'The Git reference to perform the checkout from'
-    required: false
-    default: ''
 
 outputs:
   version-number:
@@ -26,11 +22,6 @@ outputs:
 runs:
   using: 'composite'
   steps:
-    - name: Checkout branch
-      uses: actions/checkout@v3
-      with:
-        ref: ${{ inputs.git-ref }}
-
     - name: Extract version number
       shell: bash
       run: |
